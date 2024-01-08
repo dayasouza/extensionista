@@ -26,13 +26,5 @@ class Valida
         endif;
     }
 
-    public static function validarDataNasc($dataNascimento)    {
-        if ($dataNascimento = DateTime::createFromFormat('Y-m-d', $dataNascimento)) {
-            return true;
-            
-        } else {
-            return false;
-        }
-    }
 }
 ?>

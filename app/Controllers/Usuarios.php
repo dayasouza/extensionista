@@ -6,7 +6,7 @@ class Usuarios extends Controller
 
     public function __construct()
     {
-        $this-> usuarioModel = $this-> model('Usuario');
+        $this->usuarioModel = $this->model('Usuario');
     }
     public function cadastrar()
     {
@@ -66,26 +66,19 @@ class Usuarios extends Controller
                     $formulario['sobrenome']
                 )) {
                     $dados['sobrenome_erro'] = 'O campo Sobrenome não deve conter números';
-                } elseif (Valida::validarDataNasc($formulario['nascimento'])) {
-                    if (!Valida::validarDataNasc($formulario
-                    ['nascimento']) || $formulario['nascimento']->format('Y-m-d') !== $formulario['nascimento']) {
-                        $dados['nascimento_erro'] = 'Informe uma data de nascimento válida no formato YYYY-MM-DD';
-                    }
                 } elseif (strlen($formulario['senha'] < 6)) {
                     $dados['senha_erro'] = 'A senha deve ter no minímo 6 caracteres';
                 } elseif ($formulario['senha'] != $formulario['confirma_senha']) {
                     $dados['confirma_senha_erro'] = 'As senhas são diferentes';
                 } elseif (Valida::validarEmail($formulario['email'])) {
                     $dados['email_erro'] = 'digite um endereço de e-mail válido';
-                } elseif ($this->
-                usuarioModel -> validarEmail($formulario['email'])) {
+                } elseif ($this->usuarioModel->validarEmail($formulario['email'])
+                ) {
                     $dados['email_erro'] = 'O e-mail informado já está cadastrado';
-                }
-                
-                else {
+                } else {
                     $dados['senha'] = password_hash($formulario['senha'], PASSWORD_DEFAULT);
 
-                    if ($this-> usuarioModel -> inserir ($dados)) {
+                    if ($this->usuarioModel->inserir($dados)) {
                         Sessao::mensagemErro('usuario', 'Cadsatro realizado com sucesso');
                         Url::redirecionar('usuarios/login');
                     } else {
@@ -145,13 +138,13 @@ class Usuarios extends Controller
                 if (Valida::validarEmail($formulario['email'])) :
                     $dados['email_erro'] = 'O e-mail informado é invalido';
                 else :
-                   
+
                     $usuario = $this->usuarioModel->validarLogin($formulario['email'], $formulario['senha']);
 
-                    if($usuario): 
+                    if ($usuario) :
 
-                        $this-> criarSessaoUsuario($usuario);
-                    else:
+                        $this->criarSessaoUsuario($usuario);
+                    else :
                         Sessao::mensagemErro('usuario', 'Usuário ou senha inválidos', 'alert alert-danger');
                     endif;
 
@@ -176,12 +169,11 @@ class Usuarios extends Controller
 
     private function criarSessaoUsuario($usuario)
     {
-        $_SESSION['usuario_id'] = $usuario -> id;
-        $_SESSION['usuario_nome'] = $usuario -> nome;
-        $_SESSION['usuario_email'] = $usuario -> email;
+        $_SESSION['usuario_id'] = $usuario->id;
+        $_SESSION['usuario_nome'] = $usuario->nome;
+        $_SESSION['usuario_email'] = $usuario->email;
 
-        Url::redirecionar('posts');
-
+        URL::redirecionar('posts');
     }
 
     public function sair()
