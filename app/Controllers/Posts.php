@@ -1,6 +1,15 @@
-<?php 
-class Posts
+<?php
+class Posts extends Controller
 {
-    # code...
+
+    public function __construct()
+    {
+        if (!Sessao::usuarioLogado()) {
+            URL::redirecionar('usuarios/login');
+        }
+    }
+    public function index()
+    {
+        $this->view('posts/index');
+    }
 }
-?>

@@ -1,4 +1,4 @@
-<footer class="bg-warning p-5 text-light">
+<footer class="bg-laranja p-5 text-light">
     <div class="container">
         <small>
             Calculadora de Precificação Artesanal. Versão: <?= APP_VERSAO ?>

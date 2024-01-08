@@ -18,8 +18,9 @@
                 <?php
                 if (isset($_SESSION['usuario_id'])) { ?>
                     <span class="navbar-text">
-                        <p>Olá, <?= $_SESSION['usuario_nome'] ?>, Seja bem vindo(a)!</p>
-                        <a class="btn btn-sm btn-danger" href="<?= URL ?>/usuarios/sair">Sair</a>
+                        <p class="text-white">Olá, 
+                            <?php echo $_SESSION['usuario_nome'];  ?>, Seja bem vindo(a)! <a id="sair" class="btn btn-sm btn-danger float-right" href="<?= URL ?>/usuarios/sair">Sair</a></p>
+                        
                     </span>
                 <?php } else { ?>
                 <span class="navbar-text">

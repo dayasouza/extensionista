@@ -1,6 +1,6 @@
 <div class="col-xl-8 col-md-6 mx-auto p-5">
     <div class="card">
-        <h5 class="card-header">Cadastre-se</h5>
+        <h5 class="card-header bg-azulEscuro text-white">Cadastre-se</h5>
         <div class="card-body">
         <?= Sessao::mensagemErro('usuario') ?>
             <p class="card-text"><small class="text-muted">Preencha o formulário abaixo para fazer seu cadastro</small></p>

@@ -171,6 +171,7 @@ class Usuarios extends Controller
     {
         $_SESSION['usuario_id'] = $usuario->id;
         $_SESSION['usuario_nome'] = $usuario->nome;
+        $_SESSION['usuario_sobrenome'] = $usuario->sobrenome;
         $_SESSION['usuario_email'] = $usuario->email;
 
         URL::redirecionar('posts');
@@ -180,6 +181,7 @@ class Usuarios extends Controller
     {
         unset($_SESSION['usuario_id']);
         unset($_SESSION['usuario_nome']);
+        unset($_SESSION['usuario_sobrenome']);
         unset($_SESSION['usuario_email']);
 
         session_destroy();

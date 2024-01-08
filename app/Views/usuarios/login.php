@@ -1,6 +1,6 @@
 <div class="col-xl-4 col-md-6 mx-auto p-5">
     <div class="card">
-        <h5 class="card-header">
+        <h5 class="card-header bg-azulEscuro text-white">
             Login
         </h5>
         <div class="card-body">
