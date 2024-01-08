@@ -2,6 +2,7 @@
     <div class="card">
         <h5 class="card-header">Cadastre-se</h5>
         <div class="card-body">
+        <?= Sessao::mensagemErro('usuario') ?>
             <p class="card-text"><small class="text-muted">Preencha o formulário abaixo para fazer seu cadastro</small></p>
             <form name="cadastrar" method="POST" action="<?= URL ?>/usuarios/cadastrar" class="mt-4">
                 <div class="form-group">
@@ -89,7 +90,7 @@
                         <input type="submit" class="btn btn-info btn-block" value="Cadastrar">
                     </div>
                     <div class="col">
-                        <a href="#">Você já tem conta? Faça o Login</a>
+                        <a href="<?= URL ?>/usuarios/login">Você já tem conta? Faça o Login</a>
                     </div>
                 </div>
             </form>
