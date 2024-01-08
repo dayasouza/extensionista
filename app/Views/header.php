@@ -15,10 +15,18 @@
                         <a class="nav-link text-light" href="<?= URL ?>/paginas/sobre" data-tooltip="tooltip" title="Sobre nós">Sobre nós</a>
                     </li>
                 </ul>
+                <?php
+                if (isset($_SESSION['usuario_id'])) { ?>
+                    <span class="navbar-text">
+                        <p>Olá, <?= $_SESSION['usuario_nome'] ?>, Seja bem vindo(a)!</p>
+                        <a class="btn btn-sm btn-danger" href="<?= URL ?>/usuarios/sair">Sair</a>
+                    </span>
+                <?php } else { ?>
                 <span class="navbar-text">
                     <a class="btn btn-info" href="<?= URL ?>/usuarios/cadastrar" data-tooltip="tooltip" title="Não tem uma conta? Cadastre-se">Cadastre-se</a>
-                    <a class="btn btn-info" href="#" data-tooltip="tooltip" title="Tem uma conta? Faça login">Entrar</a>
+                    <a class="btn btn-info" href="<?= URL ?>/usuarios/login" data-tooltip="tooltip" title="Tem uma conta? Faça login">Entrar </a>
                 </span>
+                <?php } ?>
             </div>
         </nav>
     </div>

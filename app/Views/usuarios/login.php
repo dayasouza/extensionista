@@ -1,8 +1,8 @@
 <div class="col-xl-4 col-md-6 mx-auto p-5">
     <div class="card">
-        <div class="card-header bg-secondary text-white">
+        <h5 class="card-header">
             Login
-        </div>
+        </h5>
         <div class="card-body">
             <?= Sessao::mensagemErro('usuario') ?>
             <p class="card-text"><small class="text-muted">Informe seus dados para fazer login!</small></p>
