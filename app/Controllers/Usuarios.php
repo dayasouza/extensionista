@@ -1,6 +1,13 @@
 <?php
 class Usuarios extends Controller
 {
+
+    private $usuarioModel;
+
+    public function __construct()
+    {
+        $this-> usuarioModel = $this-> model('Usuario');
+    }
     public function cadastrar()
     {
 
@@ -53,22 +60,37 @@ class Usuarios extends Controller
                     $dados['confirma_senha_erro'] = 'Confirme a Senha';
                 }
             } else {
-                if (!preg_match('/^[A-Za-zÀ-ú\s]+$/', $formulario['nome'])) {
+                if (Valida::validarNome($formulario['nome'])) {
                     $dados['nome_erro'] = 'O campo nome não deve conter números';
-                } elseif (!preg_match('/^[A-Za-zÀ-ú\s]+$/', $formulario['sobrenome'])) {
+                } elseif (Valida::validarSobreNome(
+                    $formulario['sobrenome']
+                )) {
                     $dados['sobrenome_erro'] = 'O campo Sobrenome não deve conter números';
-                } elseif ($dataNascimento = DateTime::createFromFormat('Y-m-d', $formulario['nascimento'])) {
-                    if (!$dataNascimento || $dataNascimento->format('Y-m-d') !== $formulario['nascimento']) {
+                } elseif (Valida::validarDataNasc($formulario['nascimento'])) {
+                    if (!Valida::validarDataNasc($formulario
+                    ['nascimento']) || $formulario['nascimento']->format('Y-m-d') !== $formulario['nascimento']) {
                         $dados['nascimento_erro'] = 'Informe uma data de nascimento válida no formato YYYY-MM-DD';
                     }
                 } elseif (strlen($formulario['senha'] < 6)) {
                     $dados['senha_erro'] = 'A senha deve ter no minímo 6 caracteres';
                 } elseif ($formulario['senha'] != $formulario['confirma_senha']) {
                     $dados['confirma_senha_erro'] = 'As senhas são diferentes';
-                } elseif (!filter_var($formulario['email'], FILTER_VALIDATE_EMAIL)) {
+                } elseif (Valida::validarEmail($formulario['email'])) {
                     $dados['email_erro'] = 'digite um endereço de e-mail válido';
-                } else {
-                    echo 'Pode cadastrar os dados <hr>';
+                } elseif ($this->
+                usuarioModel -> validarEmail($formulario['email'])) {
+                    $dados['email_erro'] = 'O e-mail informado já está cadastrado';
+                }
+                
+                else {
+                    $dados['senha'] = password_hash($formulario['senha'], PASSWORD_DEFAULT);
+
+                    if ($this-> usuarioModel -> inserir ($dados)) {
+                        Sessao::mensagemErro('usuario', 'Cadsatro realizado com sucesso');
+                        Url::redirecionar('usuarios/login');
+                    } else {
+                        die("Erro ao armazenar usuario no banco de dados");
+                    }
                 }
             }
 
@@ -94,5 +116,84 @@ class Usuarios extends Controller
             ];
         }
         $this->view('usuarios/cadastrar', $dados);
+    }
+
+
+    public function login()
+    {
+
+        $formulario = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+        if (isset($formulario)) :
+            $dados = [
+                'email' => trim($formulario['email']),
+                'senha' => trim($formulario['senha']),
+                'email_erro' => '',
+                'senha_erro' => ''
+            ];
+
+            if (in_array("", $formulario)) :
+
+                if (empty($formulario['email'])) :
+                    $dados['email_erro'] = 'Preencha o campo e-mail';
+                endif;
+
+                if (empty($formulario['senha'])) :
+                    $dados['senha_erro'] = 'Preencha o campo senha';
+                endif;
+
+            else :
+                if (Valida::validarEmail($formulario['email'])) :
+                    $dados['email_erro'] = 'O e-mail informado é invalido';
+                else :
+                   
+                    $usuario = $this->usuarioModel->validarLogin($formulario['email'], $formulario['senha']);
+
+                    if($usuario): 
+
+                        $this-> criarSessaoUsuario($usuario);
+                    else:
+                        Sessao::mensagemErro('usuario', 'Usuário ou senha inválidos', 'alert alert-danger');
+                    endif;
+
+                endif;
+
+            endif;
+
+            var_dump($formulario);
+        else :
+            $dados = [
+                'email' => '',
+                'senha' => '',
+                'email_erro' => '',
+                'senha_erro' => ''
+            ];
+
+        endif;
+
+
+        $this->view('usuarios/login', $dados);
+    }
+
+    private function criarSessaoUsuario($usuario)
+    {
+        $_SESSION['usuario_id'] = $usuario -> id;
+        $_SESSION['usuario_nome'] = $usuario -> nome;
+        $_SESSION['usuario_email'] = $usuario -> email;
+
+        Url::redirecionar('posts');
+
+    }
+
+    public function sair()
+    {
+        unset($_SESSION['usuario_id']);
+        unset($_SESSION['usuario_nome']);
+        unset($_SESSION['usuario_email']);
+
+        session_destroy();
+
+        header('Location: ' . URL . '');
+
+        Url::redirecionar('usuarios/login');
     }
 }
