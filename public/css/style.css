@@ -1,24 +1,72 @@
-.bg-azulEscuro{
+.bg-azulEscuro {
     background-color: #6Baad7;
 }
 
-.bg-azulClaro{
+.bg-azulClaro {
     background-color: #b7cfe3;
 }
 
-.bg-amarelo{
+.bg-amarelo {
     background-color: #edb106;
 }
 
-.bg-laranja{
+.bg-laranja {
     background-color: #c48007;
 }
 
-.bg-marrom{
+.bg-marrom {
     background-color: #2c1b07;
 }
 
-#sair{
+#sair {
     margin-left: 1rem;
-   
+
+}
+
+.text-azulEscuro {
+    color: #6Baad7;
+}
+
+.text-azulClaro {
+    color: #b7cfe3;
+}
+
+.text-amarelo {
+    color: #edb106;
+}
+
+.text-laranja {
+    color: #c48007;
+}
+
+.text-marrom {
+    color: #2c1b07;
+}
+
+.text-braco {
+    color: white;
+}
+
+.azulEscuro {
+    background-color: #6Baad7;
+}
+
+.azulClaro {
+    background-color: #b7cfe3;
+}
+
+.amarelo {
+    background-color: #edb106;
+}
+
+.laranja {
+    background-color: #c48007;
+}
+
+.marrom {
+    background-color: #2c1b07;
+}
+
+.braco {
+    background-color: white;
 }

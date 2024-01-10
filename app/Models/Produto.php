@@ -8,6 +8,20 @@ class Produto
     {
         $this->db = new Database();
     }
+
+    public function exibirProdutos()
+    {
+        $this-> db -> query("SELECT *,
+        produtos.id AS produtoId,
+        produtos.criado_em AS dataCadatroProduto,
+        usuarios.id AS usuariosId,
+        usuarios.criado_em AS dataCadastroUsuario
+        FROM produtos
+        INNER JOIN usuarios ON
+        produtos.usuario_id = usuarios.id 
+        ORDER BY dataCadatroProduto DESC");
+        return $this-> db -> resultados();
+    }
     
     public function inserir($dados)
     {

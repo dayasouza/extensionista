@@ -12,7 +12,11 @@ class Produtos extends Controller
     }
     public function index()
     {
-        $this->view('produtos/index');
+        $dados = [
+            'produtos' => $this-> produtoModel -> exibirProdutos()
+        ];
+        
+        $this->view('produtos/index', $dados);
     }
 
     public function cadastrarProduto()

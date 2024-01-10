@@ -1,16 +1,25 @@
-<div class="container col-md-11 mx-auto p-5">
+<div class="container col-md mx-auto p-5">
     <?= Sessao::mensagemErro('produto') ?>
     <div class="card">
-        <div class="card-header bg-azulEscuro text-white">
-            <h4>PRODUTOS</h4>
+        <h4 class="card-header bg-azulEscuro text-white">
+            PRODUTOS
             <div class="float-right">
-                <a href="<?= URL ?>/produtos/cadastrarProduto" class="btn btn-light">Cadastrar Novo</a>
+                <a href="<?= URL ?>/produtos/cadastrarProduto" class="float-right btn btn-success">Cadastrar Novo</a>
             </div>
-        </div>
-        <div class="card-body">
-            <p>
-                Lista de produtos Cadastrados
-            </p>
+        </h4>
+        <div class="card-body bg-light p-1">
+            <?php foreach ($dados['produtos'] as $produto) { ?>
+                <div class="card my-2">
+                    <div class="card-body text-dark ">
+                        <h5 class="card-title"><?= $produto->nomeProduto ?></h5>
+                        <p class="card-text"><?= $produto->descricao ?></p>
+                        <a href="#" class="btn btn-sm btn-outline-info float-right">Visualizar</a>
+                    </div>
+                    <small class="card-footer text-muted ">
+                    Criado em: <?= date('d/m/Y H:i', strtotime($produto-> dataCadatroProduto)) ?>
+                    </small>
+                </div>
+            <?php } ?>
         </div>
     </div>
 </div>
