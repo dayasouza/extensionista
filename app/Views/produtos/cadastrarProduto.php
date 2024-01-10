@@ -1,4 +1,4 @@
-<div class="col-md-10 mx-auto p-5">
+<div class="col-md-12 mx-auto p-5">
     <nav class="" aria-label="breadcrumb">
         <ol class="nav nav-pills">
             <li class=" nav-item "><a class="nav-link" href="<?= URL ?>/produtos">Produtos</a></li>
@@ -7,11 +7,11 @@
     </nav>
     <div class="card">
         <h5 class="card-header bg-azulEscuro text-white">
-            PRODUTOS
+            CADASTRAR NOVO PRODUTO
         </h5>
         <div class="card-body">
 
-            <form name="cadastrarProduto" method="POST" action="<?= URL ?>/produtos/cadastrar" class="mt-4">
+            <form name="cadastrarProduto" method="POST" action="<?= URL ?>/produtos/cadastrarProduto" class="mt-4">
 
                 <div class="form-group">
                     <label for="nomeProduto">Nome produto: <sup class="text-danger">*</sup></label>

@@ -14,7 +14,7 @@ class Produtos extends Controller
         $this->view('produtos/index');
     }
 
-    public function cadastrar()
+    public function cadastrarProduto()
     {
 
 
@@ -48,6 +48,6 @@ class Produtos extends Controller
                 'linkReceita_erro' => ''
             ];
         }
-        $this->view('produtos/cadastrar', $dados);
+        $this->view('produtos/cadastrarProduto', $dados);
     }
 }

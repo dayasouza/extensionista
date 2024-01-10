@@ -1,9 +1,9 @@
-<div class="container py-5">
+<div class="container col-md-11 mx-auto p-5">
     <div class="card">
         <div class="card-header bg-azulEscuro text-white">
-            PRODUTOS 
+            <h4>PRODUTOS</h4>
             <div class="float-right">
-                <a href="<?= URL ?>/produtos/cadastrar" class="btn btn-light">Cadastrar Novo</a>
+                <a href="<?= URL ?>/produtos/cadastrarProduto" class="btn btn-light">Cadastrar Novo</a>
             </div>
         </div>
         <div class="card-body">
