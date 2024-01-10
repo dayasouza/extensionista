@@ -1,8 +1,8 @@
-<div class="col-xl-4 col-md-6 mx-auto p-5">
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="<?= URL ?>/produtos">Produtos</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Cadastrar Novo</li>
+<div class="col-md-10 mx-auto p-5">
+    <nav class="" aria-label="breadcrumb">
+        <ol class="nav nav-pills">
+            <li class=" nav-item "><a class="nav-link" href="<?= URL ?>/produtos">Produtos</a></li>
+            <li class="nav-link active" aria-current="page">Cadastrar Novo</li>
         </ol>
     </nav>
     <div class="card">
