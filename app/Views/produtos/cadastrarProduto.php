@@ -1,5 +1,5 @@
 <div class="col-md-12 mx-auto p-5">
-    <nav class="" aria-label="breadcrumb">
+    <nav class="bg-azulClaro text-white" aria-label="breadcrumb">
         <ol class="nav nav-pills">
             <li class=" nav-item "><a class="nav-link" href="<?= URL ?>/produtos">Produtos</a></li>
             <li class="nav-link active" aria-current="page">Cadastrar Novo</li>
@@ -9,7 +9,7 @@
         <h5 class="card-header bg-azulEscuro text-white">
             CADASTRAR NOVO PRODUTO
         </h5>
-        <div class="card-body">
+        <div class="card-body bg-light">
 
             <form name="cadastrarProduto" method="POST" action="<?= URL ?>/produtos/cadastrarProduto" class="mt-4">
 

@@ -1,13 +1,14 @@
 <?php
 class Produtos extends Controller
 {
-    private $usuarioModel;
+    private $produtoModel;
 
     public function __construct()
     {
         if (!Sessao::usuarioLogado()) {
             URL::redirecionar('usuarios/login');
         }
+        $this->produtoModel = $this->model('Produto');
     }
     public function index()
     {
@@ -27,15 +28,21 @@ class Produtos extends Controller
                 'descricao' => $formulario['descricao'],  // Permite valor em branco
                 'linkReceita' => $formulario['linkReceita'],  // Permite valor em branco
                 'descricao_erro' => '',
-                'linkReceita_erro' => ''
+                'linkReceita_erro' => '',
+                'usuario_id' => $_SESSION['usuario_id']
+                
             ];
 
             
             if (empty($formulario['nomeProduto'])) {
                 $dados['nomeProduto_erro'] = 'Informe o Nome do Produto';
             } else {
-                echo "Pode cadastrar o produto <hr>";
-                var_dump($formulario);
+                if ($this->produtoModel->inserir($dados)) {
+                    Sessao::mensagemErro('produto', 'Produto cadastrado com sucesso');
+                    URL::redirecionar('produtos');
+                } else {
+                    die("Erro ao cadastrar novo produto");
+                }
             }
             
         } else {
@@ -45,7 +52,9 @@ class Produtos extends Controller
                 'linkReceita' => '',
                 'nomeProduto_erro' => '',
                 'descricao_erro' => '',
-                'linkReceita_erro' => ''
+                'linkReceita_erro' => '',
+                'usuario_id' => '',
+                'usuario_id_erro' => ''
             ];
         }
         $this->view('produtos/cadastrarProduto', $dados);

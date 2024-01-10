@@ -1,4 +1,5 @@
 <div class="container col-md-11 mx-auto p-5">
+    <?= Sessao::mensagemErro('produto') ?>
     <div class="card">
         <div class="card-header bg-azulEscuro text-white">
             <h4>PRODUTOS</h4>
