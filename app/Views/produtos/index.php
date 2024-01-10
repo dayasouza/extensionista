@@ -3,7 +3,7 @@
         <div class="card-header bg-azulEscuro text-white">
             PRODUTOS 
             <div class="float-right">
-                <a href="<?= URL ?>/posts/cadastrar" class="btn btn-light">Cadastrar Novo</a>
+                <a href="<?= URL ?>/produtos/cadastrar" class="btn btn-light">Cadastrar Novo</a>
             </div>
         </div>
         <div class="card-body">
