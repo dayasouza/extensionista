@@ -38,4 +38,12 @@ class Produto
             return false;
         endif;
     }
+
+    public function exibirProdutoPorId($id)
+    {
+        $this-> db -> query("SELECT * FROM produtos WHERE id = :id");
+        $this-> db -> bind('id', $id);
+
+        return $this-> db -> resultado();
+    }
 }

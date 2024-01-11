@@ -13,10 +13,10 @@
                     <div class="card-body text-dark ">
                         <h5 class="card-title"><?= $produto->nomeProduto ?></h5>
                         <p class="card-text"><?= $produto->descricao ?></p>
-                        <a href="#" class="btn btn-sm btn-outline-info float-right">Visualizar</a>
+                        <a href="<?= URL . '/produtos/exibirProduto/' . $produto->produtoId ?>" class="btn btn-sm btn-outline-info float-right">Visualizar</a>
                     </div>
                     <small class="card-footer text-muted ">
-                    Criado em: <?= date('d/m/Y H:i', strtotime($produto-> dataCadatroProduto)) ?>
+                    Criado em: <?= Valida::dataBr($produto->dataCadatroProduto) ?>
                     </small>
                 </div>
             <?php } ?>

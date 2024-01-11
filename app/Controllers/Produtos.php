@@ -2,6 +2,7 @@
 class Produtos extends Controller
 {
     private $produtoModel;
+    private $usuarioModel;
 
     public function __construct()
     {
@@ -9,13 +10,14 @@ class Produtos extends Controller
             URL::redirecionar('usuarios/login');
         }
         $this->produtoModel = $this->model('Produto');
+        $this->usuarioModel = $this->model('Usuario');
     }
     public function index()
     {
         $dados = [
             'produtos' => $this-> produtoModel -> exibirProdutos()
         ];
-        
+
         $this->view('produtos/index', $dados);
     }
 
@@ -63,4 +65,17 @@ class Produtos extends Controller
         }
         $this->view('produtos/cadastrarProduto', $dados);
     }
+
+    public function exibirProduto($id)
+    {
+        $produto = $this-> produtoModel -> exibirProdutoPorId($id);
+        $usuario = $this-> usuarioModel -> exibirUsuarioPorId($produto -> usuario_id);
+        $dados = [
+            'produto' => $produto,
+            'usuario' => $usuario
+        ];
+
+        $this-> view('produtos/exibirProduto', $dados);
+    }
 }
+
