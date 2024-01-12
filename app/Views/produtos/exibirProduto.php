@@ -20,17 +20,21 @@
                 <?= $dados['produto']->nomeProduto ?>
             </h5>
             <div class="card-body bg-light p-1">
-                
-                    <div class="card my-2">
-                        <div class="card-body text-dark ">
-                            <p class="card-text"><?= $dados['produto']->descricao ?></p> 
-                            <p class="card-text"><?= $dados['produto']->linkReceita ?></p>                             
-                        </div>
-                        <small class="card-footer text-muted ">
-                            Criado em: <?= Valida::dataBr($dados['produto']-> criado_em) ?>
-                        </small>
+
+                <div class="card my-2">
+                    <div class="card-body text-dark ">
+                        <p class="card-text"><?= $dados['produto']->descricao ?></p>
+                        <p class="card-text"><?= $dados['produto']->linkReceita ?></p>
                     </div>
-                
+                    <small class="card-footer text-muted ">
+                        Criado em: <?= Valida::dataBr($dados['produto']->criado_em) ?>
+                    </small>
+                </div>
+                <?php
+                if ($dados['produto']->usuario_id == $_SESSION['usuario_id']) { ?>
+                    <a href="<?= URL . '/produtos/editar/' . $dados['produto']->id ?>" class="btn btn-sm btn-primary btn-block">Editar</a>
+                <?php }
+                ?>
             </div>
         </div>
     </div>
