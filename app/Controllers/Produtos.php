@@ -139,5 +139,20 @@ class Produtos extends Controller
 
         $this-> view('produtos/exibirProduto', $dados);
     }
+
+    public function deletar($id)
+    {
+        $id = (int) $id;
+
+        if (is_int($id)) {
+            if ($this-> produtoModel -> destruir($id)) {
+                Sessao::mensagemErro('produto', 'Produto deletado com sucesso!');
+                URL::redirecionar('produtos');
+            } else {
+                die("Erro ao tentar deletar o produto");
+            }
+        }
+        var_dump($id);
+    }
 }
 

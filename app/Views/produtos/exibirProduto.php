@@ -9,7 +9,7 @@
                 </li>
                 <li class="nav-link active bg-light text-primary" aria-current="page">
                     <h4>
-                        
+
                         <?= $dados['produto']->nomeProduto ?>
                     </h4>
                 </li>
@@ -20,7 +20,7 @@
             <h5 class="card-header text-azulEscuro">
                 <?= $dados['produto']->nomeProduto ?>
             </h5>
-            <div class="card-body bg-light p-1">
+            <div class="card-body bg-light p-1 center">
 
                 <div class="card my-2">
                     <div class="card-body text-dark ">
@@ -31,11 +31,22 @@
                         Criado em: <?= Valida::dataBr($dados['produto']->criado_em) ?>
                     </small>
                 </div>
-                <?php
-                if ($dados['produto']->usuario_id == $_SESSION['usuario_id']) { ?>
-                    <a href="<?= URL . '/produtos/editarProduto/' . $dados['produto']->id ?>" class="btn btn-sm btn-primary btn-block">Editar</a>
-                <?php }
-                ?>
+                
+                    <?php
+                    if ($dados['produto']->usuario_id == $_SESSION['usuario_id']) { ?>
+                        <ul class="list-inline text-center">
+                            <li class="list-inline-item">
+                                <a href="<?= URL . '/produtos/editarProduto/' . $dados['produto']->id ?>" class="btn btn-sm btn-primary btn-block">Editar</a>
+                            </li>
+                            <li class="list-inline-item">
+                                <form action="<?= URL . '/produtos/deletar/' . $dados['produto']->id ?>">
+                                    <input type="submit" class="btn btn-sm btn-danger" value="Deletar">
+                                </form>
+                            </li>
+                        </ul>
+                    <?php }
+                    ?>
+                
             </div>
         </div>
     </div>

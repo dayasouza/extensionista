@@ -65,4 +65,16 @@ class Produto
 
         return $this->db->resultado();
     }
+
+    public function deletar($id)
+    {
+        $this->db->query("DELETE FROM produtos WHERE id = :id");
+        $this->db->bind('id', $id);
+
+        if ($this->db->executa()) :
+            return true;
+        else :
+            return false;
+        endif;
+    }
 }
