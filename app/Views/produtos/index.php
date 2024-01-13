@@ -1,4 +1,5 @@
 <div class="container col-md mx-auto p-5">
+
     <?= Sessao::mensagemErro('produto') ?>
     <div class="card">
         <h4 class="card-header bg-azulEscuro text-white">
@@ -8,6 +9,7 @@
             </div>
         </h4>
         <div class="card-body bg-light p-1">
+            
             <?php foreach ($dados['produtos'] as $produto) { ?>
                 <div class="card my-2">
                     <div class="card-body text-dark ">

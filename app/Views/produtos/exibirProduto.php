@@ -9,6 +9,7 @@
                 </li>
                 <li class="nav-link active bg-light text-primary" aria-current="page">
                     <h4>
+                        
                         <?= $dados['produto']->nomeProduto ?>
                     </h4>
                 </li>
@@ -32,7 +33,7 @@
                 </div>
                 <?php
                 if ($dados['produto']->usuario_id == $_SESSION['usuario_id']) { ?>
-                    <a href="<?= URL . '/produtos/editar/' . $dados['produto']->id ?>" class="btn btn-sm btn-primary btn-block">Editar</a>
+                    <a href="<?= URL . '/produtos/editarProduto/' . $dados['produto']->id ?>" class="btn btn-sm btn-primary btn-block">Editar</a>
                 <?php }
                 ?>
             </div>
