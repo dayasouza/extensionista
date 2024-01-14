@@ -39,7 +39,7 @@
                                 <a href="<?= URL . '/produtos/editarProduto/' . $dados['produto']->id ?>" class="btn btn-sm btn-primary btn-block">Editar</a>
                             </li>
                             <li class="list-inline-item">
-                                <form action="<?= URL . '/produtos/deletar/' . $dados['produto']->id ?>">
+                                <form action="<?= URL . '/produtos/deletar/' . $dados['produto']->id ?>" method="POST">
                                     <input type="submit" class="btn btn-sm btn-danger" value="Deletar">
                                 </form>
                             </li>

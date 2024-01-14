@@ -142,17 +142,34 @@ class Produtos extends Controller
 
     public function deletar($id)
     {
-        $id = (int) $id;
+        if (!$this->checarAutorizacao($id)) {
+            $id = filter_var($id, FILTER_VALIDATE_INT);
+            $metodo = filter_input(INPUT_SERVER, 'REQUEST_METHOD', FILTER_SANITIZE_STRING);
 
-        if (is_int($id)) {
-            if ($this-> produtoModel -> destruir($id)) {
-                Sessao::mensagemErro('produto', 'Produto deletado com sucesso!');
-                URL::redirecionar('produtos');
+            if ($id && $metodo == 'POST') {
+                if ($this->produtoModel->deletar($id)) {
+                    Sessao::mensagemErro('produto', 'Produto deletado com sucesso!');
+                    URL::redirecionar('produtos');
+                }
             } else {
-                die("Erro ao tentar deletar o produto");
+                Sessao::mensagemErro('produto', 'Você não tem autorização para deletar esse Produto', 'alert alert-danger');
+                URL::redirecionar('produtos');
             }
+        } else {
+            Sessao::mensagemErro('produto', 'Você não tem autorização para deletar esse Produto', 'alert alert-danger');
+            URL::redirecionar('produtos');
         }
-        var_dump($id);
+    }
+
+    private function checarAutorizacao($id)
+    {
+        $produto = $this-> produtoModel -> exibirProdutoPorId($id);
+
+        if ($produto -> usuario_id != $_SESSION['usuario_id']) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 
