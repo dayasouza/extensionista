@@ -7,6 +7,11 @@
                         <a class="nav-link text-white" href="<?= URL ?>/produtos">PRODUTOS</a>
                     </h4>
                 </li>
+                <li class=" nav-item" >
+                <h4>
+                        <a class="nav-link text-white" href="<?= URL ?>/materiais">MATERIAIS</a>
+                    </h4>
+                </li>
                 <li class="nav-link active bg-light text-primary" aria-current="page">
                     <h4>
 
@@ -53,7 +58,7 @@
             </div>
             <?php
             if ($dados['produto']->usuario_id == $_SESSION['usuario_id']) { ?>
-                <a href="<?= URL . '/materiais/index' . $dados['produto']->id ?>" class="btn btn-success btn-block">Incluir Material</a>
+                <a href="<?= URL . '/materiais/inserirMaterial/' . $dados['produto']->id ?>" class="btn btn-success btn-block">Incluir Material</a>
 
             <?php }
             ?>
