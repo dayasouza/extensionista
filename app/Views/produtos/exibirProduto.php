@@ -17,37 +17,47 @@
         </nav>
 
         <div class="card">
-            <h5 class="card-header text-azulEscuro">
-                <?= $dados['produto']->nomeProduto ?>
-            </h5>
-            <div class="card-body bg-light p-1 center">
 
-                <div class="card my-2">
-                    <div class="card-body text-dark ">
-                        <p class="card-text"><?= $dados['produto']->descricao ?></p>
-                        <p class="card-text"><?= $dados['produto']->linkReceita ?></p>
-                    </div>
-                    <small class="card-footer text-muted ">
-                        Criado em: <?= Valida::dataBr($dados['produto']->criado_em) ?>
-                    </small>
+            <ol class="list-inline card-header">
+                <li class="list-inline-item ">
+                    <h5 class="text-azulEscuro list-inline-item">
+                        <?= $dados['produto']->nomeProduto ?></h5>
+                </li>
+
+                <?php
+                if ($dados['produto']->usuario_id == $_SESSION['usuario_id']) { ?>
+
+                    <li class="list-inline-item text-right mx-5">
+                        <a href="<?= URL . '/produtos/editarProduto/' . $dados['produto']->id ?>" class="btn btn-sm btn-primary btn-block">Editar</a>
+                    </li>
+                    <li class="list-inline-item justify-content-end">
+                        <form action="<?= URL . '/produtos/deletar/' . $dados['produto']->id ?>" method="POST">
+                            <input type="submit" class="btn btn-sm btn-danger" value="Deletar">
+                        </form>
+                    </li>
+            </ol>
+        <?php }
+        ?>
+
+
+        <div class="card-body bg-light p-1 center">
+
+            <div class="card my-2">
+                <div class="card-body text-dark ">
+                    <p class="card-text"><?= $dados['produto']->descricao ?></p>
+                    <p class="card-text"><?= $dados['produto']->linkReceita ?></p>
                 </div>
-                
-                    <?php
-                    if ($dados['produto']->usuario_id == $_SESSION['usuario_id']) { ?>
-                        <ul class="list-inline text-center">
-                            <li class="list-inline-item">
-                                <a href="<?= URL . '/produtos/editarProduto/' . $dados['produto']->id ?>" class="btn btn-sm btn-primary btn-block">Editar</a>
-                            </li>
-                            <li class="list-inline-item">
-                                <form action="<?= URL . '/produtos/deletar/' . $dados['produto']->id ?>" method="POST">
-                                    <input type="submit" class="btn btn-sm btn-danger" value="Deletar">
-                                </form>
-                            </li>
-                        </ul>
-                    <?php }
-                    ?>
-                
+                <small class="card-footer text-muted ">
+                    Criado em: <?= Valida::dataBr($dados['produto']->criado_em) ?>
+                </small>
             </div>
+            <?php
+            if ($dados['produto']->usuario_id == $_SESSION['usuario_id']) { ?>
+                <a href="<?= URL . '/materiais/index' . $dados['produto']->id ?>" class="btn btn-success btn-block">Incluir Material</a>
+
+            <?php }
+            ?>
+        </div>
         </div>
     </div>
 </div>
